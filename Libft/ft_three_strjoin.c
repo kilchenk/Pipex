@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_three_strjoin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 18:46:32 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/04/25 17:04:40 by kilchenk         ###   ########.fr       */
+/*   Created: 2023/04/25 16:56:13 by kilchenk          #+#    #+#             */
+/*   Updated: 2023/04/25 16:59:23 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include <fcntl.h>
-
-# define R 0
-# define W 1
-
-typedef struct s_vars
+char	*ft_three_strjoin(char *first, char *second, char *third)
 {
-	char	**argv;
-	char	**env;
-	char	**cmd;
-	char	*full_path;
-	char	*big_path;
-	int		argc;
-	int		pipe[2];
-	int		infile;
-	int		outfile;
-	int		index;
-	int		pid;
-	int		pipetmp;
-	int		here_doc;
-}	t_vars;
+	char	tmp;
+	char	i;
 
-#endif
+	tmp = ft_strjoin(first, second);
+	i = ft_strjoin(tmp, third);
+	free(tmp);
+	return (i);
+}

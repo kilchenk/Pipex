@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 18:46:32 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/04/25 17:04:40 by kilchenk         ###   ########.fr       */
+/*   Created: 2023/05/01 13:45:48 by kilchenk          #+#    #+#             */
+/*   Updated: 2023/05/01 13:47:46 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "Libft/libft.h"
-# include <fcntl.h>
-
-# define R 0
-# define W 1
-
-typedef struct s_vars
+void	ft_free_array(char **array)
 {
-	char	**argv;
-	char	**env;
-	char	**cmd;
-	char	*full_path;
-	char	*big_path;
-	int		argc;
-	int		pipe[2];
-	int		infile;
-	int		outfile;
-	int		index;
-	int		pid;
-	int		pipetmp;
-	int		here_doc;
-}	t_vars;
+	int	i;
 
-#endif
+	i = 0;
+	if (array)
+	{
+		while (array[i] != 0)
+			free(array[i++]);
+		free(array);
+	}
+}

@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/17 20:43:38 by kilchenk          #+#    #+#              #
-#    Updated: 2023/03/20 20:51:32 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/05/01 13:45:06 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ SRCS = ft_memset.c				\
 		ft_split.c				\
 		get_next_line.c			\
 		get_next_line_utils.c	\
+		ft_three_strjoin.c		\
+		ft_free_array.c			\
 
 SRCSB =	$(SRCS)		 		\
 		ft_lstadd_back.c	\

@@ -6,7 +6,7 @@
 #    By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/20 21:05:37 by kilchenk          #+#    #+#              #
-#    Updated: 2023/04/08 13:14:47 by kilchenk         ###   ########.fr        #
+#    Updated: 2023/05/04 16:34:38 by kilchenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC =	pipex.c
 OBJ =	$(SRC:.c=.o)
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 LIBFT = ./Libft/libft.a

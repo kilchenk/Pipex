@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:10:40 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/05/01 18:43:16 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:46:21 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init(t_vars *vars, int argc, char **argv, char **env)
 	vars->index = 1;
 	vars->pipetmp = 1;
 	vars->infile = open(argv[1], O_RDONLY);
-	vars->outfile = open(argv[argc - 1], O_CREAT | O_TRUNC | O_WRONLY, 644);
+	vars->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 777);
 	if (vars->infile < 0)
 	{
 		perror("Inputfile error");
@@ -115,16 +115,15 @@ int	main(int argc, char **argv, char **env)
 	}
 	init(&vars, argc, argv, env);
 	while (*env)
-	{
-		if (ft_strncmp("PATH=", *env, 5))
-			env++;
-		if (*env == 0)
-			return (0);
-		return (**env + 5);
-	}
+		if (ft_strncmp("PATH=", *env++, 5) == 0)
+			vars.big_path = (*(env - 1) + 5);
 	pipex(&vars);
 	close(vars.infile);
 	close(vars.outfile);
 	close(vars.pipetmp);
 	return (0);
 }
+
+// while (*env)
+// 		if (ft_strncmp(*env++, "PATH=", 5) == 0)
+// 			vars.big_path = (*(env - 1) + 5);

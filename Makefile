@@ -12,7 +12,7 @@
 
 NAME = pipex
 
-SRC =	pipex.c
+SRC =	pipex.c bonus.c
 OBJ =	$(SRC:.c=.o)
 
 CC = gcc
@@ -30,7 +30,8 @@ all: $(NAME)
 $(NAME): $(OBJ) $(SRC)
 	@$(MAKE) -C Libft
 	@$(CC) $(LIBFT) $(OBJ) -o $(NAME) $(LIBFT)
-	@echo "\033[92mPipex successfully compiled!\033[0m"
+	@echo "\033[92m•\033[0m\c"
+	@echo "\033[92m\nPipex successfully compiled!\033[0m"
 
 clean:
 	@$(MAKE) fclean -C Libft

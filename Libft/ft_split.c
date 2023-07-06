@@ -22,12 +22,12 @@ static int	word_count(char const *s, char c)
 	while (*s)
 	{
 		if (*s != c && count == 0)
-		{	
+		{
 			j++;
 			count = 1;
 		}
 		else if (*s == c)
-		{	
+		{
 			count = 0;
 		}
 		s++;

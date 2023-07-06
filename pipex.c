@@ -6,7 +6,7 @@
 /*   By: kilchenk <kilchenk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:10:40 by kilchenk          #+#    #+#             */
-/*   Updated: 2023/05/04 16:46:21 by kilchenk         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:51:37 by kilchenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,38 @@ void	init(t_vars *vars, int argc, char **argv, char **env)
 	vars->env = env;
 	vars->index = 1;
 	vars->pipetmp = 1;
-	vars->infile = open(argv[1], O_RDONLY);
-	vars->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 777);
-	if (vars->infile < 0)
+	vars->here_doc = 0;
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 	{
-		perror("Inputfile error");
-		pipe(vars->pipe);
-		close(vars->pipe[W]);
-		vars->infile = vars->pipe[R];
+		vars->here_doc = 1;
+		vars->index = 2;
+		vars->index = heredoc(vars);
+		vars->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 777);
 	}
-	if (vars->outfile < 0)
+	else
 	{
-		perror("Output file error");
-		exit(-1);
+		vars->infile = open(argv[1], O_RDONLY);
+		vars->outfile = open(argv[argc - 1], O_WRONLY | O_TRUNC | O_CREAT, 777);
 	}
+	errors(vars);
 }
 
 void	child_procces(t_vars *vars)
 {
+	if (vars->here_doc == 0)
+	{
+		if (vars->index == 2)
+			dup2(vars->infile, STDIN_FILENO);
+		else
+			dup2(vars->pipetmp, STDIN_FILENO);
+	}
+	else if (vars->here_doc != 0)
+	{
+		if (vars->index == 3)
+			dup2(vars->infile, STDIN_FILENO);
+		else
+			dup2(vars->pipetmp, STDIN_FILENO);
+	}
 	if (vars->index == vars->argc - 2)
 		dup2(vars->outfile, STDOUT_FILENO);
 	else
@@ -124,6 +138,14 @@ int	main(int argc, char **argv, char **env)
 	return (0);
 }
 
-// while (*env)
-// 		if (ft_strncmp(*env++, "PATH=", 5) == 0)
-// 			vars.big_path = (*(env - 1) + 5);
+	// while (*env)
+	// 	{
+	// 		if (ft_strncmp("PATH=", *env, 5))
+	// 			*env++;
+	// 			env++;
+	// 		if (*env == 0)
+	// 			return (NULL);
+	// 		return (*env + 5);
+	// 			return (0);
+	// 		return (**env + 5);
+	// 	}

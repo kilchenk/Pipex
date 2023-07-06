@@ -23,8 +23,8 @@ void	*ft_memset(void *str, int c, size_t n)
 	temp = (unsigned char *)str;
 	while (i < n)
 	{
-			temp[i] = c;
-			i++;
+		temp[i] = c;
+		i++;
 	}
 	return (str);
 }

@@ -25,3 +25,6 @@ $> cmd1 << LIMITER | cmd2 >> file2
 
 $> ./pipex here_doc LIMITER cmd1 cmd2 file2
 ```
+
+---
+Made by kilchenk: kilchenk@student.42wolfsburg.de | LinkedIn: [kilchenk](https://www.linkedin.com/in/kyrylo-ilchenko/)
